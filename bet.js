@@ -30,14 +30,14 @@ function doThing() {
             body = JSON.parse(body);
             try {
                 var data = body.bet.state;
+                console.log("[" + x + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
             } catch {
-
+                console.log(e);
             }
-            console.log("[" + x + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
 
         });
         doThing();
-    }, 50);
+    }, 45);
 
 };
 doThing();
