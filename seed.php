@@ -90,6 +90,6 @@ x-requested-with: XMLHttpRequest';
 //inbet();
 lagi:
 seed();
-sleep(10);
+sleep(5);
 //starbet("92b71c76-ec70-433b-9587-5426d9a542b1");
 goto lagi;
