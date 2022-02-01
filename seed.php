@@ -133,5 +133,5 @@ lagi:
 seed();
 tele(saldo());
 sleep(5);
-//starbet("92b71c76-ec70-433b-9587-5426d9a542b1");
+//starbet("");
 goto lagi;
