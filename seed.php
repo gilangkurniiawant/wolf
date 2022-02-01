@@ -77,6 +77,8 @@ x-requested-with: XMLHttpRequest';
         $res = json_decode($is['result'], true);
         if (@$res['server_seed_hashed']) {
             echo $res['server_seed_hashed']. "\n";
+        } else {
+            echo $res;
         }
     } else {
         goto batgen;
