@@ -69,7 +69,7 @@ user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 x-client-type: Web-Application
 x-hash-api: ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b
 x-requested-with: XMLHttpRequest';
-    $d['data'] = '{"client_seed":"' . rand(11111, 99999) . '' . rand(11111, 99999) . '"}';
+    $d['data'] = '{"client_seed":"0000000000' . rand(1, 9999999) . '"}';
     batgen:
     $is = curl($d);
     if (validate_json($is['result'])) {
