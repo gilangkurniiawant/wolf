@@ -31,7 +31,7 @@ var profit = 0;
         } else {
             bet = (Math.floor(Math.random() * 10) + 1) / 1000;
         }
-        if (bet > 3) {
+        if (bet > 5) {
             bet = (Math.floor(Math.random() * 10) + 1) / 1000;
         }
     }
