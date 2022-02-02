@@ -132,6 +132,6 @@ function tele($data)
 lagi:
 seed();
 tele(saldo());
-sleep(55);
+sleep(5);
 //starbet("");
 goto lagi;
