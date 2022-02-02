@@ -12,45 +12,59 @@ var headers = {
     'x-hash-api': 'ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b',
     'x-requested-with': 'XMLHttpRequest'
 };
-var base_bet = 0.00000001;
+var base_bet = (Math.floor(Math.random() * 10) + 1) / 100;
 var bet = base_bet;
-
-//bet = parseFloat(bet).toFixed(8);
-//console.log(form);
-var x = 0;
-
-function doThing() {
-    var form = {
-        currency: "trx",
-        game: "dice",
-        amount: bet.toString(),
-        multiplier: "2",
-        rule: "under",
-        bet_value: "49.5",
-        auto: 1
-    };
-    x++;
-    request.post({
-        url: url,
-        form: form,
-        headers: headers
-    }, function(e, r, body) {
-        body = JSON.parse(body);
-        try {
-            var data = body.bet.state;
-            console.log("[" + x + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
-            if (body.bet.profit < 0) {
-                bet = bet * 2;
-            } else {
-                bet = base_bet;
-            }
-        } catch {
-            console.log(e);
-            console.log(body);
+var profit = 0;
+(async() => {
+    while (1) {
+        profit = await letbet(bet);
+        if (profit < 0) {
+            bet = bet * 2;
+        } else if (profit == 0) {
+            //bet = bet;
+        } else {
+            bet = (Math.floor(Math.random() * 10) + 1) / 100;
         }
+        if (bet > 100) {
+            bet = (Math.floor(Math.random() * 10) + 1) / 100;
+        }
+    }
+})();
 
+async function letbet(bet) {
+    return new Promise(function(resolve) {
+        var form = {
+            currency: "trx",
+            game: "dice",
+            amount: bet.toString(),
+            multiplier: "2",
+            rule: "under",
+            bet_value: "49.5",
+            auto: 1
+        };
+        request.post({
+            url: url,
+            form: form,
+            headers: headers
+        }, function(e, r, body) {
+            body = JSON.parse(body);
+            try {
+                console.log("[" + 0 + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+                if (body.bet.profit < 0) {
+                    bet = bet * 2;
+                } else {
+                    bet = base_bet;
+                }
+                resolve(body.bet.profit);
+            } catch {
+                console.log(e);
+                console.log(body);
+                resolve(0);
+
+            }
+
+        });
     });
 
 
-};
-doThing(bet);
+}
