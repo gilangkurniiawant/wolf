@@ -160,7 +160,7 @@ function tele($data)
 lagi:
 seed();
 kseed();
-//tele(saldo());
+tele(saldo());
 sleep(1);
 //starbet("");
 goto lagi;
