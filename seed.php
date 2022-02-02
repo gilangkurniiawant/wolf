@@ -161,6 +161,6 @@ lagi:
 seed();
 kseed();
 tele(saldo());
-sleep(1);
+sleep(10);
 //starbet("");
 goto lagi;
