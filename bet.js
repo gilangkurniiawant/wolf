@@ -44,6 +44,7 @@ function doThing() {
             } else {
                 bet = base_bet;
             }
+
         } catch {
             console.log(e);
             console.log(body);

@@ -1,3 +1,4 @@
+var http = require('http');
 var request = require('request');
 
 var url = 'https://wolf.bet/api/v1/dice/manual/play';
@@ -18,6 +19,11 @@ var profit = 0;
 (async() => {
     while (1) {
         profit = await letbet(bet);
+        teletxt = profit[1];
+        profit = profit[0];
+        if (teletxt !== 0) {
+            tele(teletxt);
+        }
         if (profit < 0) {
             bet = bet * 2;
         } else if (profit == 0) {
@@ -43,28 +49,41 @@ async function letbet(bet) {
             auto: 1
         };
         request.post({
-            url: url,
-            form: form,
-            headers: headers
-        }, function(e, r, body) {
-            body = JSON.parse(body);
-            try {
-                console.log("[" + 0 + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
-                if (body.bet.profit < 0) {
-                    bet = bet * 2;
-                } else {
-                    bet = base_bet;
+                url: url,
+                form: form,
+                headers: headers
+            },
+            function(e, r, body) {
+
+                body = JSON.parse(body);
+                try {
+                    console.log("[" + 0 + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+                    if (body.bet.profit < 0) {
+                        bet = bet * 2;
+                    } else {
+                        bet = base_bet;
+                    }
+                    if (Math.abs(body.bet.profit) > 1) {
+                        teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
+                        resolve([body.bet.profit, teledata])
+                    } else {
+                        resolve([body.bet.profit, 0]);
+                    }
+
+                } catch {
+                    console.log(e);
+                    console.log(body);
+                    resolve([0, 0]);
+
                 }
-                resolve(body.bet.profit);
-            } catch {
-                console.log(e);
-                console.log(body);
-                resolve(0);
 
-            }
-
-        });
+            });
     });
 
+
+}
+async function tele(data) {
+
+    request("https://api.telegram.org/bot1356149887:AAFOD2v7emP9b1AcfhdEQXuRz3hjddvW624/sendMessage?chat_id=@caridolarcair&text=" + data + "&parse_mode=HTML&disable_web_page_preview=1");
 
 }
