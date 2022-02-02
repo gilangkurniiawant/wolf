@@ -29,10 +29,10 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 1000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 1000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
         }
     }
 })();
