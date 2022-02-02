@@ -37,7 +37,7 @@ function doThing() {
 
         });
         doThing();
-    }, 45);
+    }, 1);
 
 };
 doThing();
