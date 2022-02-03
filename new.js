@@ -15,7 +15,7 @@ var headers = {
     'x-hash-api': 'ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b',
     'x-requested-with': 'XMLHttpRequest'
 };
-var base_bet = 0.0002;
+var base_bet = 0.000001;
 var bet = base_bet;
 var profit = 0;
 (async() => {
@@ -41,10 +41,10 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = 0.0002;
+            bet = 0.000001;
         }
         if (bet > 10) {
-            bet = 0.0002;
+            bet = 0.000001;
         }
 
     }
