@@ -157,10 +157,16 @@ function tele($data)
 
 
 //inbet();
+$x = 0;
 lagi:
 seed();
 kseed();
-tele(saldo());
-sleep(5);
+$x++;
+if ($x > 10) {
+    tele(saldo());
+    $x = 0;
+}
+
+
 //starbet("");
 goto lagi;
