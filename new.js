@@ -36,7 +36,7 @@ var profit = 0;
             tele(teletxt);
         }
         if (profit < 0) {
-            await delay(3000);
+            await delay(10000);
             bet = bet * 200;
         } else if (profit == 0) {
             //bet = bet;
