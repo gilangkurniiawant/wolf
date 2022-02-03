@@ -40,10 +40,10 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30;
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
