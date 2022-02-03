@@ -1,1 +1,0 @@
-console.log("1.1234532132136789".substring(0, 8), )
