@@ -72,7 +72,7 @@ async function letbet(bet, rul, valbet) {
                 try {
                     console.log("[" + rul + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
                     //if (Math.abs(body.bet.profit) > 1) {
-                    if (body.bet.state == "loss" || Math.abs(body.bet.profit) > 1) {
+                    if (body.bet.state == "loss" || Math.abs(body.bet.profit) > 0.0002) {
                         teledata = encodeURIComponent("[<a href=\"http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet\">link</a>] " + body.bet.state + " - " + body.bet.amount)
                         resolve([body.bet.profit, teledata])
                     } else {
