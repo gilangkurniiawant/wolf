@@ -41,7 +41,7 @@ var profit = 0;
             bet = (Math.floor(Math.random() * 10) + 1) / 2000;
         }
         if (bet > 0.1) {
-            var rul = rule[1];
+            rul = rule[1];
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
