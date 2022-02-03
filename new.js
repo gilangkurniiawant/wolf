@@ -26,16 +26,14 @@ var profit = 0;
         var numver = randomIntFromInterval(0, 1);
 
         var valbet = bet_val[numver];
-        if (bet > 0.1) {
-            var rul = rule[1];
-        } else {
-            var rul = rule[numver];
-        }
+        var rul = rule[numver];
+
         profit = await letbet(bet, rul, valbet);
         teletxt = profit[1];
         profit = profit[0];
         if (teletxt !== 0) {
             tele(teletxt);
+            await delay(3000);
         }
         if (profit < 0) {
             bet = bet * 30;
@@ -49,7 +47,6 @@ var profit = 0;
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
-        await delay(500);
     }
 })();
 
@@ -79,7 +76,7 @@ async function letbet(bet, rul, valbet) {
                     } else {
                         bet = base_bet;
                     }
-                    if (Math.abs(body.bet.profit) > 1) {
+                    if (Math.abs(body.bet.profit) > 0.05) {
                         teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
                         resolve([body.bet.profit, teledata])
                     } else {
