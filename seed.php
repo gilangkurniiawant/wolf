@@ -129,6 +129,7 @@ x-client-type: Web-Application
 x-hash-api: ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b
 x-requested-with: XMLHttpRequest';
     batgen:
+    
     $is = curl($d);
 
     if (validate_json($is['result'])) {
