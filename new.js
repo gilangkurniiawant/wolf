@@ -34,9 +34,9 @@ var profit = 0;
         profit = profit[0];
         if (teletxt !== 0) {
             tele(teletxt);
-            await delay(3000);
         }
         if (profit < 0) {
+            await delay(3000);
             bet = bet * 30;
         } else if (profit == 0) {
             //bet = bet;
@@ -76,7 +76,7 @@ async function letbet(bet, rul, valbet) {
                     } else {
                         bet = base_bet;
                     }
-                    if (Math.abs(body.bet.profit) > (0.03)) {
+                    if (Math.abs(body.bet.profit) > 1) {
                         teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
                         resolve([body.bet.profit, teledata])
                     } else {
