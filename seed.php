@@ -161,8 +161,9 @@ $x = 0;
 lagi:
 seed();
 kseed();
+sleep(1);
 $x++;
-if ($x > 10) {
+if ($x > 5) {
     tele(saldo());
     $x = 0;
 }
