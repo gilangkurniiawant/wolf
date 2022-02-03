@@ -15,7 +15,7 @@ var headers = {
     'x-hash-api': 'ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b',
     'x-requested-with': 'XMLHttpRequest'
 };
-var base_bet = (Math.floor(Math.random() * 10) + 1) / 10000;
+var base_bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
 var bet = base_bet;
 var profit = 0;
 (async() => {
@@ -40,10 +40,10 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
