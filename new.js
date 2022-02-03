@@ -35,11 +35,13 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 5000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 5000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
         }
+        bet = bet + "";
+        bet = bet.toString().substring(0, 8);
     }
 })();
 
@@ -48,7 +50,7 @@ async function letbet(bet, rul, valbet) {
         var form = {
             currency: "trx",
             game: "dice",
-            amount: bet + ''.substring(0, 8),
+            amount: bet,
             multiplier: "1.1",
             rule: rul,
             bet_value: valbet,
