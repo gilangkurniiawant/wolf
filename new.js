@@ -22,8 +22,13 @@ var profit = 0;
 
     while (1) {
         var numver = randomIntFromInterval(0, 1);
-        var rul = rule[numver];
+
         var valbet = bet_val[numver];
+        if (bet > 0.1) {
+            var rul = rule[1];
+        } else {
+            var rul = rule[numver];
+        }
         profit = await letbet(bet, rul, valbet);
         teletxt = profit[1];
         profit = profit[0];
@@ -39,9 +44,6 @@ var profit = 0;
         }
         if (bet > 5) {
             bet = (Math.floor(Math.random() * 10) + 1) / 2000;
-        }
-        if (bet > 0.1) {
-            rul = rule[1];
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
