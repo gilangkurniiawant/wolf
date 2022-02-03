@@ -37,7 +37,7 @@ var profit = 0;
         }
         if (profit < 0) {
             await delay(3000);
-            bet = bet * 100;
+            bet = bet * 200;
         } else if (profit == 0) {
             //bet = bet;
         } else {
