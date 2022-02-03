@@ -71,7 +71,8 @@ async function letbet(bet, rul, valbet) {
                 body = JSON.parse(body);
                 try {
                     console.log("[" + rul + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
-                    if (Math.abs(body.bet.profit) > 1) {
+                    //if (Math.abs(body.bet.profit) > 1) {
+                    if (body.bet.profit < 0) {
                         teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
                         resolve([body.bet.profit, teledata])
                     } else {
