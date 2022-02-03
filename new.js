@@ -17,35 +17,41 @@ var base_bet = (Math.floor(Math.random() * 10) + 1) / 10000;
 var bet = base_bet;
 var profit = 0;
 (async() => {
+    var rule = ["under", "over"];
+    var bet_val = ["90", "9.99"];
+
     while (1) {
-        profit = await letbet(bet);
+        var numver = randomIntFromInterval(0, 1);
+        var rul = rule[numver];
+        var valbet = bet_val[numver];
+        profit = await letbet(bet, rul, valbet);
         teletxt = profit[1];
         profit = profit[0];
         if (teletxt !== 0) {
             tele(teletxt);
         }
         if (profit < 0) {
-            bet = bet * 2;
+            bet = bet * 30;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 5000;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 10000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 5000;
         }
     }
 })();
 
-async function letbet(bet) {
+async function letbet(bet, rul, valbet) {
     return new Promise(function(resolve) {
         var form = {
             currency: "trx",
             game: "dice",
-            amount: bet.toString(),
-            multiplier: "2",
-            rule: "under",
-            bet_value: "49.5",
+            amount: bet + ''.substring(0, 8),
+            multiplier: "1.1",
+            rule: rul,
+            bet_value: valbet,
             auto: 1
         };
         request.post({
@@ -57,9 +63,9 @@ async function letbet(bet) {
 
                 body = JSON.parse(body);
                 try {
-                    console.log("[" + 0 + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+                    console.log("[" + rul + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
                     if (body.bet.profit < 0) {
-                        bet = bet * 2;
+                        bet = bet * 30;
                     } else {
                         bet = base_bet;
                     }
@@ -71,6 +77,7 @@ async function letbet(bet) {
                     }
 
                 } catch {
+                    console.log(form);
                     console.log(e);
                     console.log(body);
                     resolve([0, 0]);
@@ -86,4 +93,8 @@ async function tele(data) {
 
     request("https://api.telegram.org/bot1356149887:AAFOD2v7emP9b1AcfhdEQXuRz3hjddvW624/sendMessage?chat_id=@caridolarcair&text=" + data + "&parse_mode=HTML&disable_web_page_preview=1");
 
+}
+
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
