@@ -76,7 +76,7 @@ async function letbet(bet, rul, valbet) {
                     } else {
                         bet = base_bet;
                     }
-                    if (Math.abs(body.bet.profit) > 0.05) {
+                    if (Math.abs(body.bet.profit) > 0.5) {
                         teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
                         resolve([body.bet.profit, teledata])
                     } else {
