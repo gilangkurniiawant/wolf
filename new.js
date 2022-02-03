@@ -15,12 +15,12 @@ var headers = {
     'x-hash-api': 'ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b',
     'x-requested-with': 'XMLHttpRequest'
 };
-var base_bet = (Math.floor(Math.random() * 10) + 1) / 2000 * 30;
+var base_bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30 / 30;
 var bet = base_bet;
 var profit = 0;
 (async() => {
     var rule = ["under", "over"];
-    var bet_val = ["74", "25.99"];
+    var bet_val = ["98", "1.99"];
 
     while (1) {
         var numver = randomIntFromInterval(0, 1);
@@ -37,14 +37,14 @@ var profit = 0;
         }
         if (profit < 0) {
             await delay(3000);
-            bet = bet * 5;
+            bet = bet * 100;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 8000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30 / 30;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 8000;
+            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30 / 30;
         }
 
     }
@@ -56,7 +56,7 @@ async function letbet(bet, rul, valbet) {
             currency: "trx",
             game: "dice",
             amount: bet,
-            multiplier: "1.3378",
+            multiplier: "1.0102",
             rule: rul,
             bet_value: valbet,
             auto: 1
@@ -71,11 +71,6 @@ async function letbet(bet, rul, valbet) {
                 body = JSON.parse(body);
                 try {
                     console.log("[" + rul + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
-                    if (body.bet.profit < 0) {
-                        bet = bet * 5;
-                    } else {
-                        bet = base_bet;
-                    }
                     if (Math.abs(body.bet.profit) > 1) {
                         teledata = encodeURIComponent("[http://wolf.bet/id/casino/dice?betType=dice&id=" + body.bet.hash + "&modal=bet] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount)
                         resolve([body.bet.profit, teledata])
