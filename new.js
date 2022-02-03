@@ -20,7 +20,7 @@ var bet = base_bet;
 var profit = 0;
 (async() => {
     var rule = ["under", "over"];
-    var bet_val = ["90", "9.99"];
+    var bet_val = ["74", "25.99"];
 
     while (1) {
         var numver = randomIntFromInterval(0, 1);
@@ -37,14 +37,14 @@ var profit = 0;
         }
         if (profit < 0) {
             await delay(3000);
-            bet = bet * 30;
+            bet = bet * 5;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30;
+            bet = (Math.floor(Math.random() * 10) + 1) / 8000;
         }
         if (bet > 5) {
-            bet = (Math.floor(Math.random() * 10) + 1) / 2000 / 30;
+            bet = (Math.floor(Math.random() * 10) + 1) / 8000;
         }
 
     }
@@ -56,7 +56,7 @@ async function letbet(bet, rul, valbet) {
             currency: "trx",
             game: "dice",
             amount: bet,
-            multiplier: "1.1",
+            multiplier: "1.3378",
             rule: rul,
             bet_value: valbet,
             auto: 1
@@ -72,7 +72,7 @@ async function letbet(bet, rul, valbet) {
                 try {
                     console.log("[" + rul + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
                     if (body.bet.profit < 0) {
-                        bet = bet * 30;
+                        bet = bet * 5;
                     } else {
                         bet = base_bet;
                     }
