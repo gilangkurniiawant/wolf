@@ -41,10 +41,10 @@ var profit = 0;
         } else if (profit == 0) {
             //bet = bet;
         } else {
-            bet = 0.000002;
+            bet = 0.0002;
         }
         if (bet > 5) {
-            bet = 0.000002;
+            bet = 0.0002;
         }
 
     }
