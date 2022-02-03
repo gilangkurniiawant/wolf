@@ -1,5 +1,7 @@
 var http = require('http');
 var request = require('request');
+const delay = require('delay');
+
 
 var url = 'https://wolf.bet/api/v1/dice/manual/play';
 var headers = {
@@ -47,6 +49,7 @@ var profit = 0;
         }
         bet = bet + "";
         bet = bet.toString().substring(0, 8);
+        await delay(500);
     }
 })();
 
