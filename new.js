@@ -20,6 +20,7 @@ var bet = base_bet;
 var profit = 0;
 (async() => {
     var rule = ["under", "over"];
+
     var bet_val = ["98", "1.99"];
 
     while (1) {
