@@ -39,25 +39,35 @@ function playBet() {
 async function startBet() {
     let url = 'https://wolfbet.com/api/v2/range-dice/auto/start';
     const form = {
-        currency: "trx",
-        game: "dice",
-        amount: "0.00000001",
-        multiplier: "1.9419",
-        rule: "two_ranges",
-        bet_value_first: "42",
-        bet_value_second: "67",
-        bet_value_third: "74",
-        bet_value_fourth: "100",
-        config: [
-            {
-                command: [{ name: "resetAmount" }],
-                when: [{ name: "win", value: 1, type: "every" }]
-            },
-            {
-                command: [{ name: "resetAmount" }],
-                when: [{ name: "lose", value: 1, type: "every" }]
-            }
-        ]
+        "currency": "trx",
+        "game": "dice",
+        "amount": "0.00000001",
+        "multiplier": "1.9419",
+        "rule": "two_ranges",
+        "bet_value_first": "42",
+        "bet_value_second": "67",
+        "bet_value_third": "74",
+        "bet_value_fourth": "100",
+        "config": [{
+            "command": [{
+                "name": "resetAmount"
+            }],
+            "when": [{
+                "name": "win",
+                "value": 1,
+                "type": "every"
+            }]
+        }, {
+            "command": [{
+                "name": "increaseAmountPercent",
+                "value": 200
+            }],
+            "when": [{
+                "name": "lose",
+                "value": 1,
+                "type": "every"
+            }]
+        }]
     };
 
     return new Promise((resolve, reject) => {
