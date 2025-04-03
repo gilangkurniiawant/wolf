@@ -30,7 +30,7 @@ function playBet() {
         } catch (error) {
             console.error("Error:", error);
             console.error("Response:", body);
-            //process.exit();
+            process.exit();
         }
         // Rekursif untuk menjalankan taruhan berikutnya
     });
