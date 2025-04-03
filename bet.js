@@ -1,47 +1,91 @@
-var request = require('request');
+let request = require('request');
 
-var url = 'https://wolf.bet/api/v2/dice/auto/play';
-var headers = {
+
+
+let headers = {
     'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6',
-    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiMDE3NjFhZTRmNjNkMGZmMjc0NWEzMTAyMzNhZjczYzQ4ZmI1NTQxYWU0ZTgwMmZlODhlY2Q0MmI4NWRkYzFlOTQzYWZkOGU2NmQ2ODY3OTQiLCJpYXQiOjE2NDM4NzgyNTksIm5iZiI6MTY0Mzg3ODI1OSwiZXhwIjoxNjc1NDE0MjU5LCJzdWIiOiI0MDkwMTMiLCJzY29wZXMiOltdfQ.jzViogy7QKXsLrUE93IvM_KH0ADKKtF1T9wewYqFxhC-Gmc80rTqUYZc_meNVMPYE-m_41sy-2ByEN3zVG-OGdNfvl8TwK2WqVspBcnaUT6ZiqdZLDYKneHdHrAvGQkUKba9Kxg74PPd4S8nV7TkB7MLXYDIDtpRv-ZkLd9dbiSwKH7dJlX_ult4b01m8ph4q1r5kIdSn_KaeZ9Zt_hKwUWIQ0guSF3gS8lHaCyGjrVlczEUWaVllP_YOBS_038HXQwUZ75dG8MMtESYUp3KJmImmgPohYnbgODzj9CvxJfJFHFMW65QfbEUjzbUrFRgp0dp-qQ-IUBUjzITYssgehH5xrDyYBVoHepueOQrzgmw4_wIZ-CCJrAt-aWKGqIks1Z4a0MClnHXuXGPz-lLD3BbAeDRWBn4AMvIikOE3BadvoR_Vks2EQZ73nIkJC8bMVsaB4XRxCPIc2k9eLsnvPCiq5gZtERkGaQU1l66Lbc3zA6YRWDvla8V9vpDf26wW-Ua_fjc0Ba1LW7VGcF46gXOmvcw6uoRBKBomP5M-XiehzTyHRzxAWzlFfqZYJ0uCcZ9RIyBV2M866G90AD2hMknARLEt23uk4FsHQvSDgD3gAK1kKYdvMN8XMH1V7r3XbVmrzE_y8tURqJuG1r135eBZMsm1JwVXwcnfHXVfkg',
+    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiZWNlMmE5ZGMzMjIwMjhmYmY5OWNjOWU0MjA3MzFjMTg5MmUwMjYzMjMxY2VkZThkZGIwZTRmMzg0ZDExMGYwNzIyNThjYTkzMDM1MmJjMWYiLCJpYXQiOjE3NDI4NDExMjAuNTgyODksIm5iZiI6MTc0Mjg0MTEyMC41ODI4OTQsImV4cCI6MTc3NDM3NzEyMC41NzE5MTksInN1YiI6IjQ3MjY3NyIsInNjb3BlcyI6W119.d1R2nlfnA1cQ7zfnkG2Te7KETZGhJ97M57ZJitKIDLp26qJOFbeSE3uWHfE2eP6Rat3ery_bTOCAmPkIlgosoqH1JS2q0ZOjoCgzj1tLxHKnDhVMqCNjJzO9bmXgVcku_HJabIAasaR3lK1LNXxeQhWvoo1jhEk41lN2pQC1fqRIQXBIo0KEb5JOEeR54tPxpwp8MU5_JcvNYveju-uw6hR5j_KQxWe3_WChXA1vaFKwhqwt63snHFJP1rLGd6EVrBnJCzmIy1Ll2Mxba1cPnnbj6AIMvqHdKMrBxwUlAIyo2LnmhHxshKWKRhD-Yh8RC1jEueJz5z7pzq4Pc4apsOyD41cQZigwv2JP_Xo04ukY3_tXmKrxyUOC4S7lIOlxO5cJjEtftr1eonRZ8xnGydLTNm2XqyxXmDihgnlr5VMZFg_F1ykrL-4bO-NoOXjCCCrb4ihl6dxCytmSlP9U_yBmQSL1BksaTHmZWK0ZsUv1vId6pCBPCJhLv6oI7nZeHG8YkbceDHqnFH8l3cYPNkqqAKHvSr7vKJ_TguhV6cdKKCSTLW07cOVoOqTCvrJyagn5SWuNdcTHsOmKxorfgCLIVdekvFRNQ8mSqWk0acWODLHH2yFNT6XDNJreebRtiAJvg-6-AZYf_PtZ_uyZrYYzcnQo6QJ5qmCHWg7E-AI',
     'content-type': 'application/json',
     'origin': 'http://wolf.bet',
     'referer': 'http://wolf.bet/',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...',
     'x-client-type': 'Web-Application',
     'x-hash-api': 'ba6c4afbf4e7264f12097838641d1e9684d2de9840a88581c952afc9a6ee036b',
     'x-requested-with': 'XMLHttpRequest'
 };
 
-//bet = parseFloat(bet).toFixed(8);
-//console.log(form);
-var x = 0;
+let uuid = '';
 
-function doThing() {
-    setTimeout(() => {
-        var form = {
-            uuid: "cdc32213-9ae7-4a26-af90-82689ae7bf1f"
-        };
-        x++;
-        request.post({
-                url: url,
-                form: form,
-                headers: headers
+function playBet() {
+    let url = 'https://wolfbet.com/api/v2/range-dice/auto/play';
+
+    let form = {
+        uuid: uuid
+    };
+
+    request.post({ url: url, form: form, headers: headers }, function (e, r, body) {
+        try {
+            body = JSON.parse(body);
+            console.log("[" + body.bet.hash + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+        } catch (error) {
+            console.error("Error:", error);
+            console.error("Response:", body);
+            process.exit();
+        }
+        // Rekursif untuk menjalankan taruhan berikutnya
+    });
+
+}
+async function startBet() {
+    let url = 'https://wolfbet.com/api/v2/range-dice/auto/start';
+    const form = {
+        currency: "trx",
+        game: "dice",
+        amount: "0.00000001",
+        multiplier: "1.9419",
+        rule: "two_ranges",
+        bet_value_first: "42",
+        bet_value_second: "67",
+        bet_value_third: "74",
+        bet_value_fourth: "100",
+        config: [
+            {
+                command: [{ name: "resetAmount" }],
+                when: [{ name: "win", value: 1, type: "every" }]
             },
-            function(e, r, body) {
-                body = JSON.parse(body);
-                try {
-                    console.log("[" + body.bet.hash + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
-                } catch {
-                    console.log(e);
-                    console.log(body);
-                    process.exit();
-                }
+            {
+                command: [{ name: "resetAmount" }],
+                when: [{ name: "lose", value: 1, type: "every" }]
+            }
+        ]
+    };
 
-            });
-        doThing();
-    }, 100);
+    return new Promise((resolve, reject) => {
+        request.post({ url, form, headers }, (error, response, body) => {
+            if (error) {
+                return reject(error);
+            }
+            try {
+                const data = JSON.parse(body);
+                resolve(data.autoBet.uuid);
+            } catch (error) {
+                reject("Failed to parse response");
+            }
+        });
+    });
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
-};
-doThing();
+(async () => {
+    uuid = await startBet();
+
+    while (1) {
+        playBet();
+        await delay(20);
+    }
+})();
+
