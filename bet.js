@@ -93,8 +93,9 @@ function delay(ms) {
 
 
 (async () => {
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 25; index++) {
         startBet();
+        await delay(1000)
 
 
     }
