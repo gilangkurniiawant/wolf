@@ -30,7 +30,7 @@ function playBet(id) {
         } catch (error) {
             console.error("Error:", error);
             console.error("Response:", body);
-            startBet()
+            startBet();
         }
 
     });
@@ -93,7 +93,7 @@ function delay(ms) {
 
 
 (async () => {
-    for (let index = 0; index < 25; index++) {
+    for (let index = 0; index < 15; index++) {
         startBet();
         await delay(1000)
 
