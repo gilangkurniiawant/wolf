@@ -60,7 +60,7 @@ async function startBet() {
         }, {
             "command": [{
                 "name": "increaseAmountPercent",
-                "value": 200
+                "value": 100
             }],
             "when": [{
                 "name": "lose",
@@ -80,6 +80,7 @@ async function startBet() {
                 playBet(data.autoBet.uuid)
                 resolve(data.autoBet.uuid);
             } catch (error) {
+                console.log(body)
                 reject("Failed to parse response");
             }
         });
@@ -92,12 +93,9 @@ function delay(ms) {
 
 
 (async () => {
-    for (let index = 0; index < 50; index++) {
-        try {
-            await startBet();
-        } catch (err) {
-            console.error("Error saat startBet:", err);
-        }
-        await delay(200); // opsional, buat kasih jeda biar server gak overload
+    for (let index = 0; index < 1; index++) {
+        startBet();
+
+
     }
 })();
