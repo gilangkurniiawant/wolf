@@ -73,7 +73,7 @@ async function startBet() {
     return new Promise((resolve, reject) => {
         request.post({ url, form, headers }, (error, response, body) => {
             if (error) {
-                return reject(error);
+                return reject("startBet reject " + error);
             }
             try {
                 const data = JSON.parse(body);
