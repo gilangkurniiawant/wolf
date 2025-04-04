@@ -101,7 +101,7 @@ function delay(ms) {
     for (let index = 0; index < 15; index++) {
         startBet();
         await delay(1000);
-        console.log("RUN . . .");
+        console.log(". . .");
 
 
     }
