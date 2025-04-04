@@ -93,9 +93,15 @@ function delay(ms) {
 
 
 (async () => {
+
+    console.log("RUN . . .");
+    console.log("RUN . . .");
+    console.log("RUN . . .");
+    await delay(5000);
     for (let index = 0; index < 15; index++) {
         startBet();
-        await delay(1000)
+        await delay(1000);
+        console.log("RUN . . .");
 
 
     }
