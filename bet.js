@@ -14,25 +14,25 @@ let headers = {
     'x-requested-with': 'XMLHttpRequest'
 };
 
-let uuid = '';
 
-function playBet() {
+function playBet(id) {
     let url = 'https://wolfbet.com/api/v2/range-dice/auto/play';
 
     let form = {
-        uuid: uuid
+        uuid: id
     };
 
     request.post({ url: url, form: form, headers: headers }, function (e, r, body) {
         try {
             body = JSON.parse(body);
             console.log("[" + body.bet.hash + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+            playBet(id);
         } catch (error) {
             console.error("Error:", error);
             console.error("Response:", body);
-            process.exit();
+            startBet()
         }
-        // Rekursif untuk menjalankan taruhan berikutnya
+
     });
 
 }
@@ -77,6 +77,7 @@ async function startBet() {
             }
             try {
                 const data = JSON.parse(body);
+                playBet(data.autoBet.uuid)
                 resolve(data.autoBet.uuid);
             } catch (error) {
                 reject("Failed to parse response");
@@ -91,11 +92,12 @@ function delay(ms) {
 
 
 (async () => {
-    uuid = await startBet();
 
-    while (1) {
-        playBet();
-        await delay(20);
+    for (let index = 0; index < 50; index++) {
+        startBet();
     }
+
+
+
 })();
 
