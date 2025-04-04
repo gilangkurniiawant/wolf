@@ -92,12 +92,12 @@ function delay(ms) {
 
 
 (async () => {
-
     for (let index = 0; index < 50; index++) {
-        startBet();
+        try {
+            await startBet();
+        } catch (err) {
+            console.error("Error saat startBet:", err);
+        }
+        await delay(200); // opsional, buat kasih jeda biar server gak overload
     }
-
-
-
 })();
-
