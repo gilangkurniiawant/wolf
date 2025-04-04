@@ -25,7 +25,7 @@ function playBet(id) {
     request.post({ url: url, form: form, headers: headers }, function (e, r, body) {
         try {
             body = JSON.parse(body);
-            console.log("[" + body.bet.hash + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
+            console.log("[" + id + "] " + body.bet.state + " - " + body.bet.amount + " - " + body.bet.profit + " | " + body.userBalance.amount);
             playBet(id);
         } catch (error) {
             console.error("Error:", error);
