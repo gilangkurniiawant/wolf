@@ -85,7 +85,7 @@ function delay(ms) {
 (async () => {
     console.log("RUNNING...");
     await delay(5000);
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
         startBet();
         await delay(1000);
         console.log("...");
