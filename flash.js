@@ -40,16 +40,25 @@ async function startBet() {
         "multiplier": "1.9808",
         "rule": "two_ranges",
         "flash": true,
-        "config": [
-            {
-                "command": [{ "name": "resetAmount" }],
-                "when": [{ "name": "win", "value": 1, "type": "every" }]
-            },
-            {
-                "command": [{ "name": "resetAmount" }],
-                "when": [{ "name": "lose", "value": 1, "type": "every" }]
-            }
-        ],
+        "config": [{
+            "command": [{
+                "name": "resetAmount"
+            }],
+            "when": [{
+                "name": "win",
+                "value": 1,
+                "type": "every"
+            }]
+        }, {
+            "command": [{
+                "name": "resetAmount"
+            }],
+            "when": [{
+                "name": "lose",
+                "value": 1,
+                "type": "every"
+            }]
+        }],
         "rolls": 10,
         "auto": 1
     };
