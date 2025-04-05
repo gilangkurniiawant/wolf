@@ -63,7 +63,7 @@ async function startBet() {
         "auto": 1
     };
 
-    form = { ...form, ...generateBetValues() };
+    form = JSON.stringify({ ...form, ...generateBetValues() });
 
     return new Promise((resolve, reject) => {
         request.post({ url, form, headers }, async (error, response, body) => {
