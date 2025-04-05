@@ -113,23 +113,19 @@ function generateBetValues() {
     const max = 100;
     const gap = 25;
 
-    // bet_value_first harus cukup kecil agar ada ruang sampai bet_value_fourth
     const bet_value_first = Math.floor(Math.random() * (max - 2 * gap - 1)) + min;
-
     const bet_value_second = bet_value_first + gap;
 
-    // bet_value_third harus lebih besar dari bet_value_second dan cukup kecil agar +gap masih <= max
     const thirdMin = bet_value_second + 1;
     const thirdMax = max - gap;
     const bet_value_third = Math.floor(Math.random() * (thirdMax - thirdMin + 1)) + thirdMin;
-
     const bet_value_fourth = bet_value_third + gap;
 
     return {
-        bet_value_first,
-        bet_value_second,
-        bet_value_third,
-        bet_value_fourth
+        bet_value_first: bet_value_first.toString(),
+        bet_value_second: bet_value_second.toString(),
+        bet_value_third: bet_value_third.toString(),
+        bet_value_fourth: bet_value_fourth.toString()
     };
 }
 
