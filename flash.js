@@ -65,6 +65,8 @@ async function startBet() {
 
     form = { ...form, ...generateBetValues() };
 
+    console.log(form);
+
 
     return new Promise((resolve, reject) => {
         request.post({ url, form, headers }, async (error, response, body) => {
