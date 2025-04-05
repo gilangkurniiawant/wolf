@@ -63,22 +63,7 @@ async function startBet() {
         "auto": 1
     };
 
-    function insertAfterRule(form, newProps) {
-        const newForm = {};
-        for (const key in form) {
-            newForm[key] = form[key];
-            if (key === 'rule') {
-                Object.assign(newForm, newProps); // tambahkan di sini
-            }
-        }
-        return newForm;
-    }
-
-    const betValues = generateBetValues();
-    form = insertAfterRule(form, betValues);
-
-
-    console.log(form);
+    form = { ...form, ...generateBetValues() };
 
 
     return new Promise((resolve, reject) => {
@@ -122,24 +107,20 @@ function delay(ms) {
 }
 
 function generateBetValues() {
-    const min = 0;
+    const min = 1;
     const max = 100;
     const gap = 25;
 
-    // Pilih nilai pertama secara acak dalam batas yang memungkinkan
-    const bet_value_first = Math.floor(Math.random() * (max - (2 * gap) + 1 - min)) + min;
+    // bet_value_first harus cukup kecil agar ada ruang sampai bet_value_fourth
+    const bet_value_first = Math.floor(Math.random() * (max - 2 * gap - 1)) + min;
 
-    // Nilai kedua dengan selisih pasti 25
     const bet_value_second = bet_value_first + gap;
 
-    // Nilai ketiga secara acak di antara bet_value_second + 1 dan batas aman
-    const bet_value_third = Math.floor(
-        Math.random() * (
-            Math.min(max - gap, bet_value_second + 20) - (bet_value_second + 1) + 1
-        )
-    ) + (bet_value_second + 1);
+    // bet_value_third harus lebih besar dari bet_value_second dan cukup kecil agar +gap masih <= max
+    const thirdMin = bet_value_second + 1;
+    const thirdMax = max - gap;
+    const bet_value_third = Math.floor(Math.random() * (thirdMax - thirdMin + 1)) + thirdMin;
 
-    // Nilai keempat dengan selisih pasti 25
     const bet_value_fourth = bet_value_third + gap;
 
     return {
@@ -149,6 +130,8 @@ function generateBetValues() {
         bet_value_fourth
     };
 }
+
+
 
 (async () => {
     console.log(await startBet())
