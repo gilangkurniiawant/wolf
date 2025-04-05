@@ -59,11 +59,11 @@ async function startBet() {
                 "type": "every"
             }]
         }],
-        "rolls": 10,
+        "rolls": 100,
         "auto": 1
     };
 
-    form = JSON.stringify({ ...form, ...generateBetValues() });
+    form = { ...form, ...generateBetValues() };
 
     return new Promise((resolve, reject) => {
         request.post({ url, form, headers }, async (error, response, body) => {
