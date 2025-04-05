@@ -63,7 +63,23 @@ async function startBet() {
         "auto": 1
     };
 
-    form = { ...form, ...generateBetValues() };
+    function insertAfterRule(form, newProps) {
+        const newForm = {};
+        for (const key in form) {
+            newForm[key] = form[key];
+            if (key === 'rule') {
+                Object.assign(newForm, newProps); // tambahkan di sini
+            }
+        }
+        return newForm;
+    }
+
+    const betValues = generateBetValues();
+    form = insertAfterRule(form, betValues);
+
+
+    console.log(form);
+
 
     return new Promise((resolve, reject) => {
         request.post({ url, form, headers }, async (error, response, body) => {
